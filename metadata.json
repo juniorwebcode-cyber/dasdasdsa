@@ -1,0 +1,6 @@
+{
+  "name": "Patrícia Vicente — Corretora de Imóveis em Sorocaba",
+  "description": "10 anos na construção civil. Agora, ajudando você a encontrar seu lar em Sorocaba e região. Imóveis na planta, prontos e condomínios.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

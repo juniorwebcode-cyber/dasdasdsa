@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --pv-bg: #FAF9F6;
+    --pv-surface: #FFFFFF;
+    --pv-surface-alt: #F3F1EC;
+    --pv-ink: #18181B;
+    --pv-muted: #52525B;
+    --pv-border: #E6E2DA;
+    --pv-primary: #1E4D5C;
+    --pv-accent: #A67C46;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--pv-bg);
+    color: var(--pv-ink);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    background-color: var(--pv-bg);
+    color: var(--pv-ink);
+    overflow-x: hidden;
+  }
+}
+
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-sans-ui {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-mono-tabular {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle custom scrollbar keeping light architectural tone */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3F1EC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4CFC5;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8B1A4;
+}

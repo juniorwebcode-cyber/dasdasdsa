@@ -1,0 +1,377 @@
+{
+  "entities": {
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Configurações visuais, institucionais, SEO e integrações do site público (tema claro).",
+      "type": "object",
+      "properties": {
+        "brandName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "tagline": { "type": "string", "maxLength": 240 },
+        "logoUrl": { "type": "string", "maxLength": 500 },
+        "primaryColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "maxLength": 7 },
+        "accentColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "maxLength": 7 },
+        "backgroundColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "maxLength": 7 },
+        "displayFont": { "type": "string", "maxLength": 80 },
+        "bodyFont": { "type": "string", "maxLength": 80 },
+        "whatsappNumber": { "type": "string", "maxLength": 30 },
+        "whatsappDefaultMessage": { "type": "string", "maxLength": 300 },
+        "instagramUrl": { "type": "string", "maxLength": 300 },
+        "heroTitle": { "type": "string", "maxLength": 200 },
+        "heroSubtitle": { "type": "string", "maxLength": 400 },
+        "heroImageUrl": { "type": "string", "maxLength": 500 },
+        "seoTitle": { "type": "string", "maxLength": 120 },
+        "seoDescription": { "type": "string", "maxLength": 240 },
+        "ga4MeasurementId": { "type": "string", "maxLength": 60 },
+        "gtmContainerId": { "type": "string", "maxLength": 60 },
+        "googleSearchConsoleTag": { "type": "string", "maxLength": 120 },
+        "googleAdsConversionId": { "type": "string", "maxLength": 60 },
+        "lgpdNoticeText": { "type": "string", "maxLength": 600 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["brandName", "primaryColor", "accentColor", "backgroundColor", "whatsappNumber", "updatedAt"]
+    },
+    "ProfessionalProfile": {
+      "title": "ProfessionalProfile",
+      "description": "Perfil institucional da corretora Patrícia Vicente e campos pendentes editáveis.",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "roleTitle": { "type": "string", "maxLength": 140 },
+        "instagramHandle": { "type": "string", "maxLength": 80 },
+        "creciNumber": { "type": "string", "maxLength": 80 },
+        "creciStatus": { "type": "string", "enum": ["a_confirmar", "confirmado"] },
+        "commercialEmail": { "type": "string", "maxLength": 160 },
+        "commercialEmailStatus": { "type": "string", "enum": ["a_confirmar", "confirmado"] },
+        "commercialAddress": { "type": "string", "maxLength": 240 },
+        "commercialAddressStatus": { "type": "string", "enum": ["a_confirmar", "confirmado"] },
+        "yearsConstruction": { "type": "number" },
+        "headline": { "type": "string", "maxLength": 240 },
+        "institutionalBio": { "type": "string", "maxLength": 2000 },
+        "constructionStory": { "type": "string", "maxLength": 3000 },
+        "portraitUrl": { "type": "string", "maxLength": 500 },
+        "serviceRegion": { "type": "string", "maxLength": 140 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["fullName", "roleTitle", "creciStatus", "commercialEmailStatus", "commercialAddressStatus", "updatedAt"]
+    },
+    "Property": {
+      "title": "Property",
+      "description": "Cadastro individual de imóvel sujeito à confirmação da corretora.",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string", "minLength": 2, "maxLength": 32 },
+        "title": { "type": "string", "minLength": 3, "maxLength": 160 },
+        "slug": { "type": "string", "pattern": "^[a-z0-9-]+$", "maxLength": 160 },
+        "category": { "type": "string", "enum": ["na_planta", "pronto", "condominio"] },
+        "transactionType": { "type": "string", "enum": ["venda", "lancamento"] },
+        "region": { "type": "string", "maxLength": 120 },
+        "neighborhood": { "type": "string", "maxLength": 120 },
+        "priceText": { "type": "string", "maxLength": 80 },
+        "priceNumeric": { "type": "number" },
+        "confirmationStatus": { "type": "string", "enum": ["a_confirmar", "confirmado"] },
+        "bedrooms": { "type": "string", "maxLength": 40 },
+        "suites": { "type": "string", "maxLength": 40 },
+        "bathrooms": { "type": "string", "maxLength": 40 },
+        "parkingSpaces": { "type": "string", "maxLength": 40 },
+        "areaSqm": { "type": "string", "maxLength": 40 },
+        "description": { "type": "string", "maxLength": 4000 },
+        "confirmationNote": { "type": "string", "maxLength": 400 },
+        "coverImage": { "type": "string", "maxLength": 500 },
+        "gallery": { "type": "array" },
+        "videos": { "type": "array" },
+        "features": { "type": "array" },
+        "empreendimentoId": { "type": "string", "maxLength": 128 },
+        "featured": { "type": "boolean" },
+        "published": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["code", "title", "slug", "category", "transactionType", "region", "priceText", "confirmationStatus", "published", "featured", "createdAt", "updatedAt"]
+    },
+    "Empreendimento": {
+      "title": "Empreendimento",
+      "description": "Empreendimento imobiliário em Sorocaba e região gerenciável pelo painel.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "minLength": 2, "maxLength": 160 },
+        "slug": { "type": "string", "pattern": "^[a-z0-9-]+$", "maxLength": 160 },
+        "category": { "type": "string", "enum": ["na_planta", "pronto", "condominio"] },
+        "region": { "type": "string", "maxLength": 120 },
+        "developer": { "type": "string", "maxLength": 120 },
+        "stage": { "type": "string", "maxLength": 80 },
+        "deliveryForecast": { "type": "string", "maxLength": 80 },
+        "priceRangeText": { "type": "string", "maxLength": 80 },
+        "confirmationStatus": { "type": "string", "enum": ["a_confirmar", "confirmado"] },
+        "description": { "type": "string", "maxLength": 4000 },
+        "highlights": { "type": "array" },
+        "coverImage": { "type": "string", "maxLength": 500 },
+        "gallery": { "type": "array" },
+        "videos": { "type": "array" },
+        "featured": { "type": "boolean" },
+        "published": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "slug", "category", "region", "stage", "confirmationStatus", "published", "featured", "createdAt", "updatedAt"]
+    },
+    "LandingPage": {
+      "title": "LandingPage",
+      "description": "Landing page exclusiva e sofisticada para imóvel ou empreendimento escolhido.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 3, "maxLength": 160 },
+        "slug": { "type": "string", "pattern": "^[a-z0-9-]+$", "maxLength": 160 },
+        "targetType": { "type": "string", "enum": ["property", "empreendimento", "campaign"] },
+        "targetId": { "type": "string", "maxLength": 128 },
+        "isPremiumShowcase": { "type": "boolean" },
+        "heroKicker": { "type": "string", "maxLength": 120 },
+        "heroTitle": { "type": "string", "maxLength": 200 },
+        "heroSubtitle": { "type": "string", "maxLength": 400 },
+        "heroCtaLabel": { "type": "string", "maxLength": 80 },
+        "heroImage": { "type": "string", "maxLength": 500 },
+        "architecturalThesis": { "type": "string", "maxLength": 2500 },
+        "highlights": { "type": "array" },
+        "gallery": { "type": "array" },
+        "formTitle": { "type": "string", "maxLength": 140 },
+        "seoTitle": { "type": "string", "maxLength": 120 },
+        "seoDescription": { "type": "string", "maxLength": 240 },
+        "published": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "slug", "targetType", "isPremiumShowcase", "heroTitle", "heroCtaLabel", "published", "createdAt", "updatedAt"]
+    },
+    "Lead": {
+      "title": "Lead",
+      "description": "Lead capturado via formulários públicos, agendamento de visitas, WhatsApp ou landing page.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "minLength": 2, "maxLength": 140 },
+        "phone": { "type": "string", "minLength": 6, "maxLength": 40 },
+        "email": { "type": "string", "maxLength": 160 },
+        "message": { "type": "string", "maxLength": 2000 },
+        "interestType": { "type": "string", "enum": ["contato", "agendamento_visita", "na_planta", "pronto", "condominio", "landing_page", "whatsapp"] },
+        "preferredDate": { "type": "string", "maxLength": 60 },
+        "propertyId": { "type": "string", "maxLength": 128 },
+        "propertyTitle": { "type": "string", "maxLength": 160 },
+        "empreendimentoId": { "type": "string", "maxLength": 128 },
+        "source": { "type": "string", "maxLength": 100 },
+        "utmSource": { "type": "string", "maxLength": 100 },
+        "utmMedium": { "type": "string", "maxLength": 100 },
+        "utmCampaign": { "type": "string", "maxLength": 100 },
+        "utmContent": { "type": "string", "maxLength": 100 },
+        "utmTerm": { "type": "string", "maxLength": 100 },
+        "score": { "type": "string", "enum": ["quente", "morno", "frio"] },
+        "status": { "type": "string", "enum": ["novo", "contato", "qualificado", "visita_agendada", "visita_realizada", "proposta", "negociacao", "fechado", "perdido"] },
+        "lgpdConsent": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "phone", "interestType", "source", "score", "status", "lgpdConsent", "createdAt", "updatedAt"]
+    },
+    "Client": {
+      "title": "Client",
+      "description": "Ficha completa de cliente no CRM da corretora.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "minLength": 2, "maxLength": 140 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "email": { "type": "string", "maxLength": 160 },
+        "origin": { "type": "string", "maxLength": 100 },
+        "score": { "type": "string", "enum": ["quente", "morno", "frio"] },
+        "stage": { "type": "string", "enum": ["novo", "contato", "qualificado", "visita_agendada", "visita_realizada", "proposta", "negociacao", "fechado", "perdido"] },
+        "budgetText": { "type": "string", "maxLength": 100 },
+        "preferredRegions": { "type": "array" },
+        "tags": { "type": "array" },
+        "interestPropertyIds": { "type": "array" },
+        "interactions": { "type": "array" },
+        "notes": { "type": "string", "maxLength": 4000 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "phone", "score", "stage", "createdAt", "updatedAt"]
+    },
+    "PipelineItem": {
+      "title": "PipelineItem",
+      "description": "Oportunidade no funil visual Kanban do CRM.",
+      "type": "object",
+      "properties": {
+        "clientId": { "type": "string", "maxLength": 128 },
+        "clientName": { "type": "string", "minLength": 2, "maxLength": 140 },
+        "leadId": { "type": "string", "maxLength": 128 },
+        "propertyId": { "type": "string", "maxLength": 128 },
+        "propertyTitle": { "type": "string", "maxLength": 160 },
+        "stage": { "type": "string", "enum": ["novo", "contato", "qualificado", "visita_agendada", "visita_realizada", "proposta", "negociacao", "fechado", "perdido"] },
+        "score": { "type": "string", "enum": ["quente", "morno", "frio"] },
+        "estimatedValue": { "type": "number" },
+        "tags": { "type": "array" },
+        "nextFollowUpAt": { "type": "string", "maxLength": 60 },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["clientName", "stage", "score", "createdAt", "updatedAt"]
+    },
+    "Visit": {
+      "title": "Visit",
+      "description": "Agendamento de visita com lembrete no CRM.",
+      "type": "object",
+      "properties": {
+        "clientId": { "type": "string", "maxLength": 128 },
+        "clientName": { "type": "string", "minLength": 2, "maxLength": 140 },
+        "clientPhone": { "type": "string", "maxLength": 40 },
+        "propertyId": { "type": "string", "maxLength": 128 },
+        "propertyTitle": { "type": "string", "maxLength": 160 },
+        "scheduledAt": { "type": "string", "maxLength": 60 },
+        "status": { "type": "string", "enum": ["agendada", "confirmada", "realizada", "cancelada", "reagendada"] },
+        "reminderEnabled": { "type": "boolean" },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["clientName", "propertyTitle", "scheduledAt", "status", "reminderEnabled", "createdAt", "updatedAt"]
+    },
+    "Proposal": {
+      "title": "Proposal",
+      "description": "Proposta comercial e anexo de documento no CRM.",
+      "type": "object",
+      "properties": {
+        "clientId": { "type": "string", "maxLength": 128 },
+        "clientName": { "type": "string", "minLength": 2, "maxLength": 140 },
+        "propertyId": { "type": "string", "maxLength": 128 },
+        "propertyTitle": { "type": "string", "maxLength": 160 },
+        "valueText": { "type": "string", "maxLength": 80 },
+        "paymentConditions": { "type": "string", "maxLength": 500 },
+        "status": { "type": "string", "enum": ["rascunho", "enviada", "em_analise", "aceita", "recusada"] },
+        "documentUrl": { "type": "string", "maxLength": 500 },
+        "documentName": { "type": "string", "maxLength": 160 },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["clientName", "propertyTitle", "valueText", "status", "createdAt", "updatedAt"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "Tarefa e follow-up operacional do CRM.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 2, "maxLength": 180 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "clientId": { "type": "string", "maxLength": 128 },
+        "clientName": { "type": "string", "maxLength": 140 },
+        "dueDate": { "type": "string", "maxLength": 60 },
+        "priority": { "type": "string", "enum": ["alta", "media", "baixa"] },
+        "completed": { "type": "boolean" },
+        "automationTrigger": { "type": "string", "maxLength": 120 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "priority", "completed", "createdAt", "updatedAt"]
+    },
+    "MediaAsset": {
+      "title": "MediaAsset",
+      "description": "Registro de mídia armazenada via Vercel Blob ou biblioteca local.",
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "minLength": 4, "maxLength": 600 },
+        "fileName": { "type": "string", "minLength": 1, "maxLength": 180 },
+        "contentType": { "type": "string", "maxLength": 100 },
+        "sizeBytes": { "type": "number" },
+        "category": { "type": "string", "enum": ["imovel", "empreendimento", "landing_page", "perfil", "documento"] },
+        "altText": { "type": "string", "maxLength": 240 },
+        "storageProvider": { "type": "string", "enum": ["vercel_blob", "local_asset", "external_url"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["url", "fileName", "category", "storageProvider", "createdAt"]
+    },
+    "AnalyticsEvent": {
+      "title": "AnalyticsEvent",
+      "description": "Evento de visualização ou conversão para relatórios de performance.",
+      "type": "object",
+      "properties": {
+        "eventType": { "type": "string", "enum": ["page_view", "property_view", "empreendimento_view", "landing_view", "whatsapp_click", "lead_submit", "share_click"] },
+        "path": { "type": "string", "maxLength": 240 },
+        "targetId": { "type": "string", "maxLength": 128 },
+        "source": { "type": "string", "maxLength": 100 },
+        "utmSource": { "type": "string", "maxLength": 100 },
+        "utmMedium": { "type": "string", "maxLength": 100 },
+        "utmCampaign": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["eventType", "path", "createdAt"]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Usuário administrador autorizado a acessar o painel administrativo e o CRM.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "minLength": 5, "maxLength": 160 },
+        "displayName": { "type": "string", "maxLength": 140 },
+        "role": { "type": "string", "enum": ["admin"] },
+        "active": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "role", "active", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/siteSettings/{settingId}": {
+      "schema": { "$ref": "#/entities/SiteSettings" },
+      "description": "Configurações globais do site público (documento 'main')."
+    },
+    "/professionalProfile/{profileId}": {
+      "schema": { "$ref": "#/entities/ProfessionalProfile" },
+      "description": "Dados institucionais de Patrícia Vicente (documento 'main')."
+    },
+    "/properties/{propertyId}": {
+      "schema": { "$ref": "#/entities/Property" },
+      "description": "Imóveis cadastrados (na planta, prontos e condomínios)."
+    },
+    "/empreendimentos/{empreendimentoId}": {
+      "schema": { "$ref": "#/entities/Empreendimento" },
+      "description": "Empreendimentos em Sorocaba e região."
+    },
+    "/landingPages/{landingPageId}": {
+      "schema": { "$ref": "#/entities/LandingPage" },
+      "description": "Landing pages de alta conversão (suporta exatamente uma landing page premium publicada)."
+    },
+    "/leads/{leadId}": {
+      "schema": { "$ref": "#/entities/Lead" },
+      "description": "Leads capturados pelo site público (PII restrita a administradores)."
+    },
+    "/clients/{clientId}": {
+      "schema": { "$ref": "#/entities/Client" },
+      "description": "Fichas de clientes do CRM privado."
+    },
+    "/pipeline/{dealId}": {
+      "schema": { "$ref": "#/entities/PipelineItem" },
+      "description": "Cards do pipeline Kanban de vendas."
+    },
+    "/visits/{visitId}": {
+      "schema": { "$ref": "#/entities/Visit" },
+      "description": "Agenda de visitas e lembretes."
+    },
+    "/proposals/{proposalId}": {
+      "schema": { "$ref": "#/entities/Proposal" },
+      "description": "Propostas e anexos de documentos."
+    },
+    "/tasks/{taskId}": {
+      "schema": { "$ref": "#/entities/Task" },
+      "description": "Tarefas, follow-ups e automações simples."
+    },
+    "/media/{mediaId}": {
+      "schema": { "$ref": "#/entities/MediaAsset" },
+      "description": "Biblioteca de mídias e arquivos."
+    },
+    "/analytics/{eventId}": {
+      "schema": { "$ref": "#/entities/AnalyticsEvent" },
+      "description": "Eventos de conversão e audiência."
+    },
+    "/adminUsers/{userId}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Administradores autorizados."
+    }
+  }
+}
